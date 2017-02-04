@@ -1,0 +1,50 @@
+exports[`servie-cors should forward options 1`] = `
+Object {
+  "body": "OPTIONS",
+  "bytesTransferred": 0,
+  "finished": false,
+  "headers": Object {
+    "access-control-allow-methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "access-control-allow-origin": "*",
+    "content-length": "7",
+    "content-type": "text/plain",
+  },
+  "started": false,
+  "status": 200,
+  "statusText": undefined,
+  "trailers": Object {},
+}
+`;
+
+exports[`servie-cors should handle options 1`] = `
+Object {
+  "body": undefined,
+  "bytesTransferred": 0,
+  "finished": false,
+  "headers": Object {
+    "access-control-allow-methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "access-control-allow-origin": "*",
+  },
+  "started": false,
+  "status": 204,
+  "statusText": undefined,
+  "trailers": Object {},
+}
+`;
+
+exports[`servie-cors should set origin 1`] = `
+Object {
+  "body": "GET",
+  "bytesTransferred": 0,
+  "finished": false,
+  "headers": Object {
+    "access-control-allow-origin": "*",
+    "content-length": "3",
+    "content-type": "text/plain",
+  },
+  "started": false,
+  "status": 200,
+  "statusText": undefined,
+  "trailers": Object {},
+}
+`;
