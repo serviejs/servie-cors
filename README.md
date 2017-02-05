@@ -1,11 +1,10 @@
 # Servie CORS
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/blakeembrey/node-servie-cors.svg)](https://greenkeeper.io/)
-
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 [![Build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
+[![Greenkeeper badge](https://badges.greenkeeper.io/blakeembrey/node-servie-cors.svg)](https://greenkeeper.io/)
 
 > CORS middleware for Servie.
 
