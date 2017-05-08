@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/blakeembrey/node-servie-cors.git"
+    "url": "git://github.com/serviejs/servie-cors.git"
   },
   "keywords": [
     "servie",
@@ -34,9 +34,9 @@
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/blakeembrey/node-servie-cors/issues"
+    "url": "https://github.com/serviejs/servie-cors/issues"
   },
-  "homepage": "https://github.com/blakeembrey/node-servie-cors",
+  "homepage": "https://github.com/serviejs/servie-cors",
   "devDependencies": {
     "jest": "^19.0.0",
     "rimraf": "^2.5.4",

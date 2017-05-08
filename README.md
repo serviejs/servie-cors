@@ -1,10 +1,10 @@
 # Servie CORS
 
-[![NPM version][npm-image]][npm-url]
-[![NPM downloads][downloads-image]][downloads-url]
-[![Build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
-[![Greenkeeper badge](https://badges.greenkeeper.io/blakeembrey/node-servie-cors.svg)](https://greenkeeper.io/)
+[![NPM version](https://img.shields.io/npm/v/servie-cors.svg?style=flat)](https://npmjs.org/package/servie-cors)
+[![NPM downloads](https://img.shields.io/npm/dm/servie-cors.svg?style=flat)](https://npmjs.org/package/servie-cors)
+[![Build status](https://img.shields.io/travis/serviejs/servie-cors.svg?style=flat)](https://travis-ci.org/serviejs/servie-cors)
+[![Test coverage](https://img.shields.io/coveralls/serviejs/servie-cors.svg?style=flat)](https://coveralls.io/r/serviejs/servie-cors?branch=master)
+[![Greenkeeper badge](https://badges.greenkeeper.io/serviejs/servie-cors.svg)](https://greenkeeper.io/)
 
 > CORS middleware for Servie.
 
@@ -45,12 +45,3 @@ This project is written using [TypeScript](https://github.com/Microsoft/TypeScri
 ## License
 
 Apache 2.0
-
-[npm-image]: https://img.shields.io/npm/v/servie-cors.svg?style=flat
-[npm-url]: https://npmjs.org/package/servie-cors
-[downloads-image]: https://img.shields.io/npm/dm/servie-cors.svg?style=flat
-[downloads-url]: https://npmjs.org/package/servie-cors
-[travis-image]: https://img.shields.io/travis/blakeembrey/node-servie-cors.svg?style=flat
-[travis-url]: https://travis-ci.org/blakeembrey/node-servie-cors
-[coveralls-image]: https://img.shields.io/coveralls/blakeembrey/node-servie-cors.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/blakeembrey/node-servie-cors?branch=master
