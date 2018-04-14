@@ -4,7 +4,6 @@
 [![NPM downloads](https://img.shields.io/npm/dm/servie-cors.svg?style=flat)](https://npmjs.org/package/servie-cors)
 [![Build status](https://img.shields.io/travis/serviejs/servie-cors.svg?style=flat)](https://travis-ci.org/serviejs/servie-cors)
 [![Test coverage](https://img.shields.io/coveralls/serviejs/servie-cors.svg?style=flat)](https://coveralls.io/r/serviejs/servie-cors?branch=master)
-[![Greenkeeper badge](https://badges.greenkeeper.io/serviejs/servie-cors.svg)](https://greenkeeper.io/)
 
 > CORS middleware for Servie.
 

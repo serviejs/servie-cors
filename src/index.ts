@@ -32,15 +32,15 @@ export function cors (options: Options | OptionsFunction = {}) {
       return new Response({ statusCode: options.optionsStatusCode || 204 })
     }
 
-    if (req.method === 'OPTIONS') {
+    if (req.method.toLowerCase() === 'options') {
       if (options.optionsContinue) {
         res = await next()
       } else {
         res = new Response({ statusCode: options.optionsStatusCode || 204 })
       }
 
-      const allowMethodsHeader = stringify(options.methods) || (!options.methods ? '' : DEFAULT_METHODS)
-      const allowHeadersHeader = stringify(options.headers) || (!options.headers ? '' : req.headers.get('Access-Control-Request-Headers'))
+      const allowMethodsHeader = stringify(options.methods) || (options.methods === false ? '' : DEFAULT_METHODS)
+      const allowHeadersHeader = stringify(options.headers) || (options.headers === false ? '' : req.headers.get('Access-Control-Request-Headers'))
 
       if (allowMethodsHeader) res.headers.set('Access-Control-Allow-Methods', allowMethodsHeader)
       if (allowHeadersHeader) res.headers.set('Access-Control-Allow-Headers', allowHeadersHeader)

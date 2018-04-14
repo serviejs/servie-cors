@@ -2,25 +2,35 @@
 
 exports[`servie-cors should forward options 1`] = `
 Object {
-  "body": "OPTIONS",
+  "body": Object {
+    "bodyUsed": false,
+    "buffered": true,
+    "hasBody": true,
+    "headers": Object {
+      "content-length": "7",
+      "content-type": "text/plain",
+    },
+  },
   "bytesTransferred": 0,
   "finished": false,
   "headers": Object {
     "access-control-allow-methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "access-control-allow-origin": "*",
-    "content-length": "7",
-    "content-type": "text/plain",
   },
   "started": false,
-  "status": 200,
-  "statusText": undefined,
-  "trailers": Object {},
+  "statusCode": 200,
+  "statusMessage": undefined,
 }
 `;
 
 exports[`servie-cors should handle options 1`] = `
 Object {
-  "body": undefined,
+  "body": Object {
+    "bodyUsed": false,
+    "buffered": true,
+    "hasBody": false,
+    "headers": Object {},
+  },
   "bytesTransferred": 0,
   "finished": false,
   "headers": Object {
@@ -28,25 +38,29 @@ Object {
     "access-control-allow-origin": "*",
   },
   "started": false,
-  "status": 204,
-  "statusText": undefined,
-  "trailers": Object {},
+  "statusCode": 204,
+  "statusMessage": undefined,
 }
 `;
 
 exports[`servie-cors should set origin 1`] = `
 Object {
-  "body": "GET",
+  "body": Object {
+    "bodyUsed": false,
+    "buffered": true,
+    "hasBody": true,
+    "headers": Object {
+      "content-length": "3",
+      "content-type": "text/plain",
+    },
+  },
   "bytesTransferred": 0,
   "finished": false,
   "headers": Object {
     "access-control-allow-origin": "*",
-    "content-length": "3",
-    "content-type": "text/plain",
   },
   "started": false,
-  "status": 200,
-  "statusText": undefined,
-  "trailers": Object {},
+  "statusCode": 200,
+  "statusMessage": undefined,
 }
 `;

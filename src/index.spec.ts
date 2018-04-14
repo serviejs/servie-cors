@@ -1,12 +1,13 @@
 import { compose } from 'throwback'
 import { cors } from './index'
 import { Request, Response } from 'servie'
+import { createBody } from 'servie/dist/body/node'
 
 describe('servie-cors', () => {
   it('should set origin', () => {
     const app = compose<Request, Response>([
       cors(),
-      (req) => new Response({ status: 200, body: req.method })
+      (req) => new Response({ statusCode: 200, body: createBody(req.method) })
     ])
 
     const req = new Request({ url: '/' })
@@ -30,7 +31,7 @@ describe('servie-cors', () => {
     const app = compose<Request, Response>([
       cors({ optionsContinue: true }),
       function (req) {
-        return new Response({ status: 200, body: req.method })
+        return new Response({ statusCode: 200, body: createBody(req.method) })
       }
     ])
 
@@ -48,8 +49,8 @@ describe('servie-cors', () => {
 function finalhandler (req: Request) {
   return function () {
     return Promise.resolve(new Response({
-      status: 404,
-      body: `Cannot ${req.method} ${req.url}`
+      statusCode: 404,
+      body: createBody(`Cannot ${req.method} ${req.url}`)
     }))
   }
 }
