@@ -36,7 +36,7 @@ const app = compose(
 * `maxAge?: number` - Configures the **Access-Control-Max-Age** CORS header.
 * `credentials?: boolean` - Configures the **Access-Control-Allow-Credentials** CORS header.
 * `optionsContinue?: boolean` - Pass the CORS preflight **OPTIONS** request to the `next()` handler.
-* `optionsSuccessStatus?: number` - Provides a status code to use for successful OPTIONS requests.
+* `optionsStatusCode?: number` - Provides a status code to use for successful OPTIONS requests.
 
 ## TypeScript
 

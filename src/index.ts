@@ -1,17 +1,19 @@
 import { Request, Response } from 'servie'
 
 export interface Options {
-  origin?: boolean | string
+  origin?: string | false
   expose?: string | string[] | false
   methods?: string | string[] | false
   headers?: string | string[] | false
   maxAge?: number
   credentials?: boolean
   optionsContinue?: boolean
-  optionsSuccessStatus?: number
+  optionsStatusCode?: number
 }
 
 export type OptionsFunction = (req: Request) => Options | Promise<Options>
+
+const DEFAULT_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE'
 
 /**
  * Process requests as CORS.
@@ -24,52 +26,39 @@ export function cors (options: Options | OptionsFunction = {}) {
     let res: Response
 
     if (options.origin === false) {
-      if (req.method === 'OPTIONS' && !options.optionsContinue) {
-        return new Response({ status: options.optionsSuccessStatus || 204 })
-      }
+      if (req.method.toLowerCase() !== 'options') return next()
+      if (options.optionsContinue) return next()
 
-      return next()
+      return new Response({ statusCode: options.optionsStatusCode || 204 })
     }
 
     if (req.method === 'OPTIONS') {
       if (options.optionsContinue) {
         res = await next()
       } else {
-        res = new Response({ status: options.optionsSuccessStatus || 204 })
+        res = new Response({ statusCode: options.optionsStatusCode || 204 })
       }
 
-      const methods = stringify(options.methods) || (options.methods === false ? false : 'GET,HEAD,PUT,PATCH,POST,DELETE')
-      const headers = stringify(options.headers) || (options.headers === false ? false : req.headers.get('Access-Control-Request-Headers'))
+      const allowMethodsHeader = stringify(options.methods) || (!options.methods ? '' : DEFAULT_METHODS)
+      const allowHeadersHeader = stringify(options.headers) || (!options.headers ? '' : req.headers.get('Access-Control-Request-Headers'))
 
-      if (methods) {
-        res.headers.set('Access-Control-Allow-Methods', methods)
-      }
+      if (allowMethodsHeader) res.headers.set('Access-Control-Allow-Methods', allowMethodsHeader)
+      if (allowHeadersHeader) res.headers.set('Access-Control-Allow-Headers', allowHeadersHeader)
 
-      if (headers) {
-        res.headers.set('Access-Control-Allow-Headers', headers)
-      }
-
-      if (typeof options.maxAge === 'number') {
-        res.headers.set('Access-Control-Max-Age', options.maxAge)
-      }
+      if (typeof options.maxAge === 'number') res.headers.set('Access-Control-Max-Age', options.maxAge)
     } else {
       res = await next()
     }
 
-    const origin = typeof options.origin === 'string' ? options.origin : (req.headers.get('Origin') || '*')
-    const expose = stringify(options.expose)
+    const allowOrigin = options.origin || req.headers.get('Origin') || '*'
+    const exposeHeader = stringify(options.expose)
 
-    res.headers.set('Access-Control-Allow-Origin', origin)
+    res.headers.set('Access-Control-Allow-Origin', allowOrigin)
 
-    if (expose) {
-      res.headers.set('Access-Control-Expose-Headers', expose)
-    }
+    if (exposeHeader) res.headers.set('Access-Control-Expose-Headers', exposeHeader)
+    if (options.credentials) res.headers.set('Access-Control-Allow-Credentials', 'true')
 
-    if (options.credentials) {
-      res.headers.set('Access-Control-Allow-Credentials', 'true')
-    }
-
-    if (origin !== '*' && origin === req.headers.get('Origin')) {
+    if (allowOrigin !== '*') {
       res.headers.set('Vary', res.headers.getAll('Vary').concat('Origin').join(','))
     }
 
