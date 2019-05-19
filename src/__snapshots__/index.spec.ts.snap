@@ -1,66 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`servie-cors should forward options 1`] = `
-Object {
-  "body": Object {
-    "bodyUsed": false,
-    "buffered": true,
-    "hasBody": true,
-    "headers": Object {
+Response {
+  "$rawBody": "options",
+  "headers": Headers {
+    "object": Object {
+      "access-control-allow-methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+      "access-control-allow-origin": "*",
       "content-length": "7",
       "content-type": "text/plain",
     },
   },
-  "bytesTransferred": 0,
-  "finished": false,
-  "headers": Object {
-    "access-control-allow-methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "access-control-allow-origin": "*",
-  },
-  "started": false,
-  "statusCode": 200,
-  "statusMessage": undefined,
+  "status": 200,
+  "statusText": "",
+  "trailer": Promise {},
 }
 `;
 
 exports[`servie-cors should handle options 1`] = `
-Object {
-  "body": Object {
-    "bodyUsed": false,
-    "buffered": true,
-    "hasBody": false,
-    "headers": Object {},
+Response {
+  "$rawBody": null,
+  "headers": Headers {
+    "object": Object {
+      "access-control-allow-methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+      "access-control-allow-origin": "*",
+    },
   },
-  "bytesTransferred": 0,
-  "finished": false,
-  "headers": Object {
-    "access-control-allow-methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "access-control-allow-origin": "*",
-  },
-  "started": false,
-  "statusCode": 204,
-  "statusMessage": undefined,
+  "status": 204,
+  "statusText": "",
+  "trailer": Promise {},
 }
 `;
 
 exports[`servie-cors should set origin 1`] = `
-Object {
-  "body": Object {
-    "bodyUsed": false,
-    "buffered": true,
-    "hasBody": true,
-    "headers": Object {
+Response {
+  "$rawBody": "GET",
+  "headers": Headers {
+    "object": Object {
+      "access-control-allow-origin": "*",
       "content-length": "3",
       "content-type": "text/plain",
     },
   },
-  "bytesTransferred": 0,
-  "finished": false,
-  "headers": Object {
-    "access-control-allow-origin": "*",
-  },
-  "started": false,
-  "statusCode": 200,
-  "statusMessage": undefined,
+  "status": 200,
+  "statusText": "",
+  "trailer": Promise {},
 }
 `;

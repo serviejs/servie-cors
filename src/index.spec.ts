@@ -1,56 +1,44 @@
-import { compose } from 'throwback'
-import { cors } from './index'
-import { Request, Response } from 'servie'
-import { createBody } from 'servie/dist/body/node'
+import { compose } from "throwback";
+import { cors } from "./index";
+import { Request, Response } from "servie/dist/node";
+import { finalhandler } from "servie-finalhandler";
 
-describe('servie-cors', () => {
-  it('should set origin', () => {
+describe("servie-cors", () => {
+  it("should set origin", () => {
     const app = compose<Request, Response>([
       cors(),
-      (req) => new Response({ statusCode: 200, body: createBody(req.method) })
-    ])
+      req => new Response(req.method, { status: 200 })
+    ]);
 
-    const req = new Request({ url: '/' })
+    const req = new Request("/");
 
-    return app(req, finalhandler(req)).then((res) => {
-      expect(res.toJSON()).toMatchSnapshot()
-    })
-  })
+    return app(req, finalhandler(req)).then(res => {
+      expect(res).toMatchSnapshot();
+    });
+  });
 
-  it('should handle options', () => {
-    const app = cors()
+  it("should handle options", () => {
+    const app = cors();
 
-    const req = new Request({ url: '/', method: 'options' })
+    const req = new Request("/", { method: "options" });
 
-    return app(req, finalhandler(req)).then((res) => {
-      expect(res.toJSON()).toMatchSnapshot()
-    })
-  })
+    return app(req, finalhandler(req)).then(res => {
+      expect(res).toMatchSnapshot();
+    });
+  });
 
-  it('should forward options', () => {
+  it("should forward options", () => {
     const app = compose<Request, Response>([
       cors({ optionsContinue: true }),
-      function (req) {
-        return new Response({ statusCode: 200, body: createBody(req.method) })
+      function(req) {
+        return new Response(req.method, { status: 200 });
       }
-    ])
+    ]);
 
-    const req = new Request({ url: '/', method: 'options' })
+    const req = new Request("/", { method: "options" });
 
-    return app(req, finalhandler(req)).then((res) => {
-      expect(res.toJSON()).toMatchSnapshot()
-    })
-  })
-})
-
-/**
- * Final 404 handler.
- */
-function finalhandler (req: Request) {
-  return function () {
-    return Promise.resolve(new Response({
-      statusCode: 404,
-      body: createBody(`Cannot ${req.method} ${req.url}`)
-    }))
-  }
-}
+    return app(req, finalhandler(req)).then(res => {
+      expect(res).toMatchSnapshot();
+    });
+  });
+});

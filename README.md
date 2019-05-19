@@ -16,26 +16,23 @@ npm install servie-cors --save
 ## Usage
 
 ```ts
-import { cors } from 'servie-cors'
-import { compose } from 'throwback'
-import { get } from 'servie-route'
+import { cors } from "servie-cors";
+import { compose } from "throwback";
+import { get } from "servie-route";
 
-const app = compose(
-  cors(),
-  get('/foo', ...)
-)
+const app = compose([cors(), get("/foo", () => new Response(null))]);
 ```
 
 ### Options
 
-* `origin?: boolean | string` - Configures the **Access-Control-Allow-Origin** CORS header.
-* `expose?: string | string[] | false` - Configures the **Access-Control-Expose-Headers** CORS header.
-* `methods?: string | string[] | false` - Configures the **Access-Control-Allow-Methods** CORS header.
-* `headers?: string | string[] | false` - Configures the **Access-Control-Allow-Headers** CORS header.
-* `maxAge?: number` - Configures the **Access-Control-Max-Age** CORS header.
-* `credentials?: boolean` - Configures the **Access-Control-Allow-Credentials** CORS header.
-* `optionsContinue?: boolean` - Pass the CORS preflight **OPTIONS** request to the `next()` handler.
-* `optionsStatusCode?: number` - Provides a status code to use for successful OPTIONS requests.
+- `origin?: boolean | string` - Configures the **Access-Control-Allow-Origin** CORS header.
+- `expose?: string | string[] | false` - Configures the **Access-Control-Expose-Headers** CORS header.
+- `methods?: string | string[] | false` - Configures the **Access-Control-Allow-Methods** CORS header.
+- `headers?: string | string[] | false` - Configures the **Access-Control-Allow-Headers** CORS header.
+- `maxAge?: number` - Configures the **Access-Control-Max-Age** CORS header.
+- `credentials?: boolean` - Configures the **Access-Control-Allow-Credentials** CORS header.
+- `optionsContinue?: boolean` - Pass the CORS preflight **OPTIONS** request to the `next()` handler.
+- `optionsStatus?: number` - Provides a status code to use for successful OPTIONS requests.
 
 ## TypeScript
 
