@@ -43,17 +43,19 @@ export function cors(options: Options | OptionsFunction = {}) {
       }
 
       const allowMethodsHeader =
-        stringify(options.methods) ||
-        (options.methods === false ? "" : DEFAULT_METHODS);
-      const allowHeadersHeader =
-        stringify(options.headers) ||
-        (options.headers === false
+        options.methods === false
           ? ""
-          : req.headers.get("Access-Control-Request-Headers"));
+          : stringify(options.methods) || DEFAULT_METHODS;
+      const allowHeadersHeader =
+        options.headers === false
+          ? ""
+          : stringify(options.headers) ||
+            req.headers.get("Access-Control-Request-Headers");
 
       if (allowMethodsHeader) {
         res.headers.set("Access-Control-Allow-Methods", allowMethodsHeader);
       }
+
       if (allowHeadersHeader) {
         res.headers.set("Access-Control-Allow-Headers", allowHeadersHeader);
       }
@@ -65,14 +67,16 @@ export function cors(options: Options | OptionsFunction = {}) {
       res = await next();
     }
 
-    const allowOrigin = options.origin || req.headers.get("Origin") || "*";
-    const exposeHeader = stringify(options.expose);
+    const allowOrigin = options.origin || "*";
+    const exposeHeader =
+      options.expose === false ? "" : stringify(options.expose);
 
     res.headers.set("Access-Control-Allow-Origin", allowOrigin);
 
     if (exposeHeader) {
       res.headers.set("Access-Control-Expose-Headers", exposeHeader);
     }
+
     if (options.credentials) {
       res.headers.set("Access-Control-Allow-Credentials", "true");
     }
@@ -94,6 +98,6 @@ export function cors(options: Options | OptionsFunction = {}) {
 /**
  * Input value to a string.
  */
-function stringify<T>(value: T | string | string[]): T | string {
-  return Array.isArray(value) ? value.join(",") : value;
+function stringify<T>(value: undefined | string | string[]): string {
+  return Array.isArray(value) ? value.join(",") : value || "";
 }
